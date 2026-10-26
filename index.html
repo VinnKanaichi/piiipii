@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8f4ec">
+<title>For Pipi — Birthday Edition</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+
+:root{
+  --paper:#f8f4ec;--ink:#20201d;--muted:#77746c;--yellow:#f3df4b;
+  --pink:#f5b7c8;--blue:#bce6e4;--line:rgba(32,32,29,.15);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;z-index:10;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E")}
+button{font:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,calc(100% - 44px));margin:auto}
+.topbar{height:84px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:relative;z-index:2}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:-.06em;font-size:17px}
+.brand-mark{width:35px;height:35px;display:grid;place-items:center;background:var(--yellow);border:1.5px solid var(--ink);border-radius:50%;font-size:20px}
+.brand small{display:block;font-size:8px;letter-spacing:.14em;font-weight:700;color:var(--muted);margin-top:2px}
+.status,.eyebrow,.tiny-label,.pill,.wish-top,.side-index,.footer-note{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:800;letter-spacing:.12em}
+.status{display:flex;align-items:center;gap:8px;color:var(--muted)}
+.status i{width:7px;height:7px;background:#68a879;border-radius:50%;box-shadow:0 0 0 4px #68a87922}
+.hero-grid{display:block;padding:24px 0 80px}
+.hero-card{position:relative;color:#fff;min-height:540px;background:var(--yellow) url('https://c.termai.cc/i167/VnnUNM.jpg') center/cover no-repeat;border:1.5px solid var(--ink);border-radius:7px;padding:clamp(28px,5vw,58px);overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;animation:rise .85s cubic-bezier(.2,.8,.2,1) both}
+
+.hero-card .eyebrow,
+.hero-card .tiny-label,
+.hero-card h1,
+.hero-card .hero-copy,
+.hero-card .sticker{color:#fff;text-shadow:0 2px 8px #0008}
+.hero-card .outline{-webkit-text-stroke:2px #fff;color:transparent}
+.hero-card .hero-copy{color:#fff}
+.hero-card .btn-black{background:#fff;color:#20201d;border-color:#fff}
+.hero-card .btn-black:hover{background:#f3df4b;color:#20201d}
+.hero-card .decor-star{z-index:0;pointer-events:none}
+.hero-card .name-stamp{color:#20201d}
+.eyebrow{display:inline-flex;align-items:center;gap:8px}
+.tiny-label{margin:38px 0 12px;opacity:.62}
+h1{font-size:clamp(66px,10vw,130px);line-height:.78;letter-spacing:-.095em;margin:0;font-weight:900;position:relative;z-index:1}
+.outline{color:transparent;-webkit-text-stroke:2px var(--ink)}
+.name-stamp{position:absolute;right:8%;top:34%;transform:rotate(9deg);border:1.5px solid var(--ink);border-radius:50%;width:104px;height:104px;display:grid;place-items:center;font-size:14px;font-weight:900;letter-spacing:-.04em;background:var(--pink);box-shadow:4px 5px 0 var(--ink);z-index:2}
+.hero-copy{font-size:14px;line-height:1.8;max-width:400px;margin:30px 0 22px;color:#39372c;position:relative;z-index:1}
+.btn{border:1.5px solid var(--ink);padding:15px 19px;font-size:11px;font-weight:900;letter-spacing:.08em;display:inline-flex;align-items:center;justify-content:space-between;gap:35px;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s}
+.btn-black{background:var(--ink);color:white;position:relative;z-index:5;pointer-events:auto;touch-action:manipulation}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 var(--ink)}
+.btn-black:hover{background:#393933}
+.sticker{position:absolute;bottom:28px;right:32px;pointer-events:none;transform:rotate(-7deg);font-size:10px;font-weight:900;letter-spacing:.1em;border-bottom:2px solid var(--ink);padding-bottom:4px}
+.decor-star{position:absolute;line-height:1;pointer-events:none}
+.star-one{font-size:50px;right:17%;bottom:16%;animation:spin 18s linear infinite}
+.star-two{font-size:26px;right:8%;top:15%;animation:float 4s ease-in-out infinite}
+.hero-side{display:grid;grid-template-rows:1fr .75fr;gap:18px}
+.side-card{border:1.5px solid var(--ink);border-radius:7px;padding:24px;position:relative;overflow:hidden;animation:rise .9s .12s cubic-bezier(.2,.8,.2,1) both}
+.cyan-card{background:var(--blue)}.pink-card{background:var(--pink);animation-delay:.22s}
+.avatar{width:96px;height:96px;margin:24px auto 14px;border-radius:50%;background:var(--paper);border:1.5px solid var(--ink);display:grid;place-items:center;font-family:'Playfair Display',serif;font-size:57px;position:relative;box-shadow:5px 5px 0 var(--ink);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.avatar:hover{transform:rotate(-8deg) scale(1.06)}
+.avatar span{position:absolute;right:-6px;top:0;background:var(--yellow);border:1px solid var(--ink);border-radius:50%;width:28px;height:28px;display:grid;place-items:center;font:14px 'DM Sans'}
+.side-card h2{font-size:clamp(30px,4vw,44px);line-height:.88;letter-spacing:-.08em;margin:0;font-weight:900}
+.side-card h2 span{font-family:'Playfair Display',serif;font-style:italic;font-weight:600}
+.side-card p{font-size:11px;line-height:1.6;max-width:160px;color:#494a44}
+.side-index{position:absolute;bottom:18px;right:20px;opacity:.6;font-size:9px}
+.checklist{padding:0;list-style:none;margin:27px 0 0;display:grid;gap:15px;font-size:12px;font-weight:700}
+.checklist li{display:flex;gap:11px;align-items:center}
+.checklist li span{display:grid;place-items:center;width:21px;height:21px;border:1px solid var(--ink);border-radius:50%;font-size:10px}
+.message-section{padding:35px 0 90px;border-top:1px solid var(--line);display:none;opacity:0;transform:translateY(24px)}
+.message-section.open{display:block;animation:letterOpen .95s cubic-bezier(.2,.8,.2,1) forwards}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:25px}
+.section-head h2{font-size:clamp(43px,7vw,76px);line-height:.82;letter-spacing:-.08em;margin:18px 0 0}
+.pill{border:1px solid var(--line);border-radius:100px;padding:10px 13px;color:var(--muted);font-size:9px}
+.wish-card{background:#fffdf8;border:1.5px solid var(--ink);border-radius:7px;padding:clamp(24px,5vw,56px);position:relative;overflow:hidden;box-shadow:7px 7px 0 var(--ink);transition:transform .4s,box-shadow .4s}
+.wish-card:hover{transform:translate(-2px,-2px);box-shadow:10px 10px 0 var(--ink)}
+.wish-top{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:9px;border-bottom:1px solid var(--line);padding-bottom:17px}
+.wish-icon{font-size:28px;margin-top:32px;filter:saturate(.7)}
+.wish-card h3{font:700 clamp(30px,5vw,49px)/1.1 'Playfair Display',serif;letter-spacing:-.04em;margin:16px 0 22px;max-width:700px}
+.wish-card p{font-size:14px;line-height:1.95;color:#55534d;max-width:740px}
+.wish-sign{font-family:'Playfair Display',serif;font-style:italic;font-size:18px!important;color:var(--ink)!important;margin-top:28px}
+.hidden-note{max-height:0;opacity:0;transform:translateY(14px);overflow:hidden;transition:max-height .8s cubic-bezier(.2,.8,.2,1),opacity .6s,transform .6s}
+.hidden-note.show{max-height:260px;opacity:1;transform:translateY(0)}
+.reveal-row{display:flex;justify-content:center;margin-top:30px}
+.memory-photo-section{margin-top:58px;padding-top:34px;border-top:1px solid var(--line);display:none}
+.memory-photo-section.open{display:block;animation:letterOpen .8s cubic-bezier(.2,.8,.2,1) both}
+.memory-photo-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:18px}
+.memory-photo-head h3{font:700 clamp(28px,5vw,43px)/1.05 'Playfair Display',serif;letter-spacing:-.04em;margin:10px 0 0}
+.memory-photo-frame{border:1.5px solid var(--ink);border-radius:12px;padding:8px;background:#fffdf8;box-shadow:5px 5px 0 var(--ink);width:min(100%,350px);margin:0 auto}
+.memory-photo{display:block;width:100%;max-height:300px;aspect-ratio:4/5;object-fit:cover;border-radius:7px;background:#f1ede4}
+.memory-caption{text-align:center;font-size:12px;color:var(--muted);margin:15px 0 0;font-style:italic}
+.photo-note-toggle{display:flex;justify-content:center;margin:17px auto 0}
+.photo-note-arrow{width:42px;height:42px;border:1.5px solid var(--ink);border-radius:50%;display:grid;place-items:center;background:var(--yellow);font-size:19px;transition:transform .25s,background .25s}
+.photo-note-arrow:hover{transform:translateY(3px);background:var(--pink)}
+.photo-note{max-height:0;opacity:0;overflow:hidden;transform:translateY(-7px);transition:max-height .6s ease,opacity .4s,transform .4s;text-align:center}
+.photo-note.open{max-height:150px;opacity:1;transform:translateY(0)}
+.photo-note p{font:italic 17px/1.6 'Playfair Display',serif;margin:13px auto 0;max-width:420px}
+.video-action{display:flex;justify-content:center;margin-top:22px}
+.video-bubble{position:fixed;right:20px;bottom:20px;z-index:40;display:none;width:min(370px,calc(100vw - 32px));padding:12px;border:1.5px solid var(--ink);border-radius:22px 22px 22px 6px;background:#fffdf8;box-shadow:7px 8px 0 #20201d55;opacity:0;transform:translateY(18px) scale(.96)}
+.video-bubble.open{display:block;animation:bubbleOpen .45s cubic-bezier(.2,.8,.2,1) forwards}
+.video-bubble video{display:block;width:100%;max-height:42vh;border-radius:13px;background:#20201d}
+.video-bubble-close{position:absolute;top:17px;right:17px;width:30px;height:30px;border:1px solid #20201d;border-radius:50%;background:#fffdf8;color:#20201d;font-size:18px;line-height:1;z-index:1}
+.video-bubble-caption{text-align:center;font-size:11px;font-weight:900;letter-spacing:.1em;margin:12px 0 2px}
+@keyframes bubbleOpen{to{opacity:1;transform:translateY(0) scale(1)}}
+.reveal-btn{background:transparent;border:1px solid var(--ink);border-radius:100px;padding:13px 19px;font-size:11px;font-weight:800;transition:background .25s,color .25s,transform .25s}
+.reveal-btn:hover{background:var(--ink);color:white;transform:translateY(-2px)}
+footer{border-top:1px solid var(--line);padding:24px 0 34px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted)}
+.footer-note{font-size:9px}
+.footer-title{font-size:12px;font-weight:900;letter-spacing:-.03em;color:var(--ink)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:20;overflow:hidden}
+.confetti-piece{position:absolute;top:-20px;width:8px;height:13px;animation:fall var(--dur) cubic-bezier(.25,.46,.45,.94) forwards;transform:rotate(var(--rot));border:1px solid #20201d44}
+.toast{position:fixed;top:18px;left:50%;transform:translate(-50%,-18px);opacity:0;background:var(--ink);color:white;padding:15px 22px;border-radius:14px;font-size:12px;font-weight:800;z-index:30;transition:opacity .45s,transform .45s cubic-bezier(.2,.8,.2,1);white-space:nowrap;box-shadow:0 12px 36px #20201d26;max-width:calc(100% - 28px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.fade-in{opacity:1;transform:translateY(0);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes letterOpen{0%{opacity:0;transform:translateY(34px) scale(.97);clip-path:inset(0 0 85% 0);filter:blur(5px)}55%{opacity:1;clip-path:inset(0 0 0 0);filter:blur(0);transform:translateY(-4px) scale(1.005)}100%{opacity:1;transform:translateY(0) scale(1);clip-path:inset(0 0 0 0);filter:blur(0)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(10deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(720deg);opacity:.2}}
+@media(max-width:760px){
+ .toast{top:12px;font-size:11px;padding:13px 16px}
+ .wrap{width:min(100% - 28px,560px)}.topbar{height:70px}.status{font-size:8px}
+ .hero-grid{display:block;padding-top:14px;padding-bottom:60px}
+ .hero-card{min-height:500px;padding:28px 25px}.tiny-label{margin-top:42px}
+ h1{font-size:clamp(65px,17vw,100px)}.name-stamp{width:78px;height:78px;font-size:11px;right:8%;top:32%}
+ .hero-copy{font-size:13px;max-width:290px;margin-top:28px}
+ .section-head{align-items:flex-start;gap:12px;flex-direction:column}.section-head h2{font-size:57px}
+ .pill{font-size:8px}.wish-card{box-shadow:5px 5px 0 var(--ink)}.wish-card p{font-size:13px}
+ .wish-top{font-size:8px}.message-section{padding-bottom:65px}
+ footer{align-items:flex-start;flex-direction:column;gap:8px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div id="confetti" aria-hidden="true"></div>
+<header class="topbar wrap">
+  <a class="brand" href="#" aria-label="Pipi birthday home"><span class="brand-mark">✳</span><span>PIPI DAY<small>A LITTLE BIRTHDAY SITE</small></span></a>
+  <span class="status"><i></i> SPECIAL DAY / 001</span>
+</header>
+
+<main class="wrap">
+  <section class="hero-grid">
+    <div class="hero-card">
+      <span class="eyebrow">TODAY IS ALL ABOUT YOU <span>✦</span></span>
+      <p class="tiny-label">A VERY IMPORTANT ANNOUNCEMENT</p>
+      <h1>HAPPY<br>BIRTH<span class="outline">DAY!</span></h1>
+      <div class="name-stamp">FOR PIPI</div>
+      <p class="hero-copy">Hari ini bukan hari biasa. Satu manusia spesial lagi bertambah umur — dan halaman kecil ini dibuat khusus buat kamu.</p>
+      <button class="btn btn-black" id="openSurprise">BUKA KEJUTAN <span>↗</span></button>
+      <span class="sticker">IT'S YOUR DAY!</span>
+      <span class="decor-star star-one">✳</span><span class="decor-star star-two">✦</span>
+    </div>
+  </section>
+
+  <section class="message-section" id="message">
+    <div class="section-head fade-in">
+      <div><span class="eyebrow">01 / THE WISH</span><h2>FOR YOU,<br>PIPI.</h2></div>
+      <span class="pill">MADE WITH GOOD VIBES</span>
+    </div>
+    <article class="wish-card fade-in">
+      <div class="wish-top"><span>A LITTLE NOTE</span><span>OPEN WHENEVER</span></div>
+      <div class="wish-icon">✉</div>
+      <h3>Selamat ulang tahun, Pipi.</h3>
+      <p>Semoga di umur yang baru ini, hal-hal baik makin sering datang ke hidup kamu. Semoga kamu selalu diberi kesehatan, hati yang tenang, orang-orang tulus di sekelilingmu, dan keberanian buat mengejar semua yang kamu impikan.</p>
+      <p>Kalau nanti ada hari yang terasa berat, semoga kamu tetap ingat kalau kamu sudah melewati banyak hal sampai sejauh ini. Pelan-pelan aja, nggak harus semuanya sempurna. Kamu pantas bahagia, bukan cuma hari ini, tapi juga di hari-hari biasa setelahnya.</p>
+      <p class="wish-sign">Have the happiest birthday — wishing you all the best.</p>
+      <div class="hidden-note" id="hiddenNote">
+        <p>Semoga satu per satu doa baikmu menemukan jalannya. Semoga kamu punya banyak alasan untuk bangga sama diri sendiri, lebih banyak tawa yang tulus, dan kenangan kecil yang nantinya bikin kamu tersenyum saat mengingatnya.</p>
+        <p class="wish-sign">Enjoy your day, Pipi. You deserve good things.</p>
+      </div>
+    </article>
+    <div class="reveal-row fade-in"><button class="reveal-btn" id="revealNote">Buka pesan kecil ↓</button></div>
+
+    <div class="reveal-row fade-in"><button class="reveal-btn" id="openPhotoSection">Buka foto kecil ↓</button></div>
+    <section class="memory-photo-section" id="memoryPhotoSection" aria-label="Foto kenangan Pipi">
+      <div class="memory-photo-head">
+        <div><span class="eyebrow">02 / A RANDOM MEMORY</span><h3>FOTO INI, PIPI.</h3></div>
+      </div>
+      <figure class="memory-photo-frame">
+        <img class="memory-photo" src="https://c.termai.cc/i181/6Yh9.jpg" alt="Foto kenangan untuk Pipi" loading="lazy">
+        <figcaption class="memory-caption">( gak tau aku Nemu di galeri keknya wowow )</figcaption>
+      </figure>
+      <div class="photo-note-toggle">
+        <button class="photo-note-arrow" id="togglePhotoNote" aria-label="Buka teks kecil di bawah foto" aria-expanded="false">↓</button>
+      </div>
+      <div class="photo-note" id="photoNote">
+        <p>Ketemu foto ini di galeri, terus kepikiran buat masukin ke sini. Semoga di hari spesial kamu, ada hal-hal kecil yang bisa bikin kamu senyum juga, Pipi.</p>
+      </div>
+      <div class="video-action"><button class="reveal-btn" id="playPipiVideo" aria-expanded="false">PUTAR PI VIDEONYA</button></div>
+    </section>
+  </section>
+</main>
+
+<div class="video-bubble" id="pipiVideoBubble" aria-hidden="true">
+  <button class="video-bubble-close" id="closePipiVideo" aria-label="Tutup video">×</button>
+  <video id="pipiVideo" controls playsinline preload="none" aria-label="Video ulang tahun Pipi">
+    <source src="https://c.termai.cc/v145/4jc.mp4" type="video/mp4">
+    Browser kamu belum mendukung pemutar video ini.
+  </video>
+  <p class="video-bubble-caption">HAPPY BIRTHDAY PIPI</p>
+</div>
+
+<footer class="wrap">
+  <span class="footer-title">PIPI DAY / BIRTHDAY EDITION</span>
+  <span class="footer-note">MADE FOR ONE PERSON, WITH GOOD INTENTIONS.</span>
+</footer>
+<div class="toast" id="toast" role="status">Hari ini giliran Pipi jadi tokoh utama.</div>
+
+<script>
+const $ = (selector) => document.querySelector(selector);
+const confettiLayer = $('#confetti');
+const toast = $('#toast');
+let toastTimer;
+
+function showToast(message, duration = 5000){
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), duration);
+}
+
+function celebrate(){
+  const colors = ['#f3df4b','#f5b7c8','#bce6e4','#ffffff','#20201d'];
+  for(let i=0;i<75;i++){
+    const piece = document.createElement('span');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random()*100+'%';
+    piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+    piece.style.setProperty('--dur',(2.2+Math.random()*2.2)+'s');
+    piece.style.setProperty('--drift',(Math.random()*220-110)+'px');
+    piece.style.setProperty('--rot',(Math.random()*180)+'deg');
+    piece.style.animationDelay=(Math.random()*.55)+'s';
+    if(Math.random()>.55){piece.style.width='5px';piece.style.height='5px';piece.style.borderRadius='50%'}
+    confettiLayer.appendChild(piece);
+    setTimeout(()=>piece.remove(),5200);
+  }
+}
+
+$('#openSurprise').addEventListener('click',()=>{
+  const message = $('#message');
+  if (!message.classList.contains('open')) {
+    message.style.display = 'block';
+    // Force layout so the reveal animation reliably starts on mobile browsers.
+    void message.offsetHeight;
+    message.classList.add('open');
+  }
+  celebrate();
+  showToast('HBD Pipi dari Puput AOWKKW', 5000);
+  window.setTimeout(() => {
+    message.scrollIntoView({behavior:'smooth',block:'start'});
+  }, 180);
+});
+
+$('#revealNote').addEventListener('click',()=>{
+  const note=$('#hiddenNote');
+  const isOpen=note.classList.toggle('show');
+  $('#revealNote').textContent=isOpen?'Tutup pesan ↑':'Buka pesan kecil ↓';
+  if(isOpen){celebrate();showToast('Ada satu doa lagi buat Pipi.');}
+});
+
+$('#openPhotoSection').addEventListener('click',()=>{
+  const section=$('#memoryPhotoSection');
+  const button=$('#openPhotoSection');
+  const isOpen=section.classList.contains('open');
+  if(isOpen){
+    section.classList.remove('open');
+    section.style.display='none';
+    button.textContent='Buka foto kecil ↓';
+  }else{
+    section.style.display='block';
+    void section.offsetHeight;
+    section.classList.add('open');
+    button.textContent='Tutup foto kecil ↑';
+    window.setTimeout(()=>section.scrollIntoView({behavior:'smooth',block:'start'}),120);
+  }
+});
+
+$('#togglePhotoNote').addEventListener('click',()=>{
+  const note=$('#photoNote');
+  const button=$('#togglePhotoNote');
+  const isOpen=note.classList.toggle('open');
+  button.textContent=isOpen?'↑':'↓';
+  button.setAttribute('aria-expanded',String(isOpen));
+  button.setAttribute('aria-label',isOpen?'Tutup teks kecil di bawah foto':'Buka teks kecil di bawah foto');
+});
+
+function setPipiVideoOpen(open){
+  const bubble=$('#pipiVideoBubble');
+  const video=$('#pipiVideo');
+  const button=$('#playPipiVideo');
+  if(open){
+    bubble.style.display='block';
+    void bubble.offsetHeight;
+    bubble.classList.add('open');
+    bubble.setAttribute('aria-hidden','false');
+    button.setAttribute('aria-expanded','true');
+    button.textContent='TUTUP VIDEONYA ↑';
+  }else{
+    video.pause();
+    bubble.classList.remove('open');
+    bubble.style.display='none';
+    bubble.setAttribute('aria-hidden','true');
+    button.setAttribute('aria-expanded','false');
+    button.textContent='PUTAR PI VIDEONYA';
+  }
+}
+
+$('#playPipiVideo').addEventListener('click',()=>{
+  setPipiVideoOpen(!$('#pipiVideoBubble').classList.contains('open'));
+});
+$('#closePipiVideo').addEventListener('click',()=>setPipiVideoOpen(false));
+
+</script>
+</body>
+</html>
